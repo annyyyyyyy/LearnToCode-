@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { getUser, logout } from "../../services";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 export const DropdownLoggedIn = ({ setDropdown }) => {
@@ -29,7 +29,7 @@ export const DropdownLoggedIn = ({ setDropdown }) => {
       }
     }
     fetchData();
-  }, []);
+  }, []);  //eslint-disable-line
 
   return (
     <div
