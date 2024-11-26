@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react"
+import { createContext, useContext, useReducer, useCallback } from "react"
 import { filterReducer } from '../reducers'
 
 const filterInitialState = {
@@ -15,14 +15,14 @@ export const FilterProvider = ({children}) => {
 
     const [state, dispatch] = useReducer(filterReducer, filterInitialState);
 
-    function initialProductList(products) {
+    const initialProductList = useCallback((products) => {
         dispatch({
-            type: "PRODUCT_LIST",
-            payload: {
-                products: products
-            }
-        })
-    }
+          type: "PRODUCT_LIST",
+          payload: {
+            products: products,
+          },
+        });
+      }, []);
 
     function bestSeller(products) {
         return state.bestSellerOnly ? products.filter(product => product.best_seller === true) : products;

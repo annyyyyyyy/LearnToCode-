@@ -24,7 +24,7 @@ export const ProductList = () => {
       }
     }
     fetchProducts();
-  }, [initialProductList, serachTerm]);
+  }, [serachTerm]);
 
   return (
     <main>
