@@ -30,10 +30,11 @@ export const Login = () => {
     password.current.value = process.env.REACT_APP_GUEST_PASS;
 
     try {
-      const data = await login({
+      const authDetail = {
         email: email.current.value,
         password: password.current.value,
-      });
+      };
+      const data = await login(authDetail);
       data.accessToken ? navigate("/products") : toast.error(data);
     } catch (error) {
       toast.error(error.message);
