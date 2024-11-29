@@ -7,12 +7,6 @@ export const DropdownLoggedIn = ({ setDropdown }) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
 
-  // const handleLogout = useCallback(() => {
-  //   logout();
-  //   setDropdown(false);
-  //   navigate("/");
-  // }, [navigate, setDropdown]);
-
   function handleLogout() {
     logout();
     setDropdown(false);
@@ -32,12 +26,6 @@ export const DropdownLoggedIn = ({ setDropdown }) => {
       } catch (error) {
         toast.error("Unable to fetch user details. Please try again.");
       }
-      // try {
-      //   const data = await getUser();
-      //   data.email ? setUser(data) : handleLogout();
-      // } catch (error) {
-      //   toast.error(error.message);
-      // }
     }
     fetchData();
   }, []);  //eslint-disable-line
