@@ -19,7 +19,15 @@ export const Login = () => {
       };
 
       const data = await login(authDetail);
-      data.accessToken ? navigate("/products") : toast.error(data);
+      //data.accessToken ? navigate("/products") : toast.error(data);
+      if (data.accessToken) {
+        localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("cbid", data.cbid);
+  
+        navigate("/products");
+      } else {
+        toast.error("Guest login failed.");
+      }
     } catch (error) {
       toast.error(error.message);
     }
@@ -48,7 +56,7 @@ export const Login = () => {
           Login
         </p>
       </section>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} autoComplete="off">
         <div className="mb-6">
           <label
             htmlFor="email"
