@@ -23,10 +23,21 @@ export const DropdownLoggedIn = ({ setDropdown }) => {
     async function fetchData() {
       try {
         const data = await getUser();
-        data.email ? setUser(data) : handleLogout();
+        if (data && data.email) {
+          setUser(data);
+        } else {
+          toast.error("Session expired. Please log in again.");
+          handleLogout();
+        }
       } catch (error) {
-        toast.error(error.message);
+        toast.error("Unable to fetch user details. Please try again.");
       }
+      // try {
+      //   const data = await getUser();
+      //   data.email ? setUser(data) : handleLogout();
+      // } catch (error) {
+      //   toast.error(error.message);
+      // }
     }
     fetchData();
   }, []);  //eslint-disable-line
